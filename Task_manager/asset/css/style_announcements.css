@@ -1,0 +1,130 @@
+ body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container-custom {
+            width: 60%; 
+            max-width: 900px;
+            margin: 40px auto 60px;
+            padding: 30px 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            outline: 2px solid #e0e0e0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        header img {
+            height: auto;
+            width: 50%;
+            object-fit: contain;
+        }
+        header h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: #0d6efd;
+            margin: 0;
+            user-select: none;
+        }
+        .form-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 25px 30px;
+            margin-bottom: 40px;
+            border: 1px solid #dee2e6;
+        }
+        .form-container h2 {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0d6efd;
+            padding-bottom: 6px;
+        }
+        .announcement-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            border-left: 6px solid #0d6efd;
+            transition: box-shadow 0.3s ease;
+        }
+        .announcement-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        .announcement-card h3 {
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+        .announcement-meta {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: #6c757d;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .badge-category {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.35em 0.7em;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            user-select: none;
+        }
+        .category-general {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+            border: 1px solid #0d6efd;
+        }
+        .category-urgent {
+            background-color: #f8d7da;
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+        .category-update {
+            background-color: #d1e7dd;
+            color: #198754;
+            border: 1px solid #198754;
+        }
+        .category-meeting {
+            background-color: #fff3cd;
+            color: #fd7e14;
+            border: 1px solid #fd7e14;
+        }
+        .announcement-list {
+            max-height: 520px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        /* Scrollbar styling for modern browsers */
+        .announcement-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .announcement-list::-webkit-scrollbar-thumb {
+            background-color: rgba(13, 110, 253, 0.3);
+            border-radius: 4px;
+        }
+        .announcement-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+            user-select: none;
+        }

@@ -1,0 +1,18 @@
+
+.gradient-bg {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+}
+.card-shadow {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.input-focus:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 1px #6366f1;
+}
+.leave-type.selected {
+    background-color: #e0e7ff;
+    border-color: #6366f1;
+}
+.datepicker-cell.selected {
+    background-color: #6366f1 !important;
+}

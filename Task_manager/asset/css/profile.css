@@ -1,0 +1,106 @@
+ body {
+      background: #f4f6fb;
+    }
+    .sidebar {
+      width: 60px;
+      background-color: #2f55d4;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 1rem;
+    }
+    .sidebar i {
+      color: #fff;
+      display: block;
+      margin: 20px auto;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    .main {
+      margin-left: 60px;
+      padding: 2rem;
+    }
+    .profile-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .profile-img-placeholder {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto 1rem;
+      position: relative;
+    }
+    .profile-img-placeholder i {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    input[type="file"] {
+      display: none;
+    }
+
+    /* Custom Scrollbar for Sidebar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #3b82f6;
+      border-radius: 3px;
+    }
+    /* Hide arrows on number input on Chrome */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    #content {
+      display: flex;
+      flex-direction: column;
+    }
+    .main-form { flex: 1;  }
+    .notice-footer { flex: 0; }
+
+    .notification-item {
+  background-color: blue;
+  border-left: 5px solid #8e44ad;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  transform: scale(0.97); /* Slightly smaller base for effect */
+}
+
+.notification-item:hover {
+  background-color: #e9d3fa; /* Slight hover color change */
+  transform: scale(1.0); /* Slightly zoom on hover */
+}
+
+
+/* When active (visible) */
+#sidebar.active {
+  transform: translateX(0);
+}
+
+/* Move the inner div down slightly when active */
+#sidebar.active .sidebar-inner {
+  margin-top: 60px; /* adjust as needed */
+}
+
