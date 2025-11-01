@@ -1,14 +1,15 @@
 <?php
-$servername = getenv('DB_HOST');
-$username   = getenv('DB_USER');
-$password   = getenv('DB_PASS');
-$dbname     = getenv('DB_NAME');
-$port       = getenv('DB_PORT') ?: 3306;
 
-$conn = mysqli_connect($servername, $username, $password, $dbname, $port);
+// CONFIGURE: Database credentials
+$servername = "localhost";
+$username = "root";
+$password = ""; // Set your MySQL password
+$dbname = "task_manager"; // Change to your database name
+
+// Connect to database
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 ?>
-
