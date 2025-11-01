@@ -1,6 +1,6 @@
 <?php
 // ======================
-// Task Assignment Script (Updated for Mailgun API)
+// Task Assignment Script (Simplified, No Email Column)
 // ======================
 
 error_reporting(E_ALL);
@@ -62,69 +62,20 @@ if (empty($task_name) || empty($task_description) || !$assigned_to || empty($pri
     exit;
 }
 
-// ===== Insert task into DB (sent_email = 0 initially) =====
+// ===== Insert task into DB =====
 $sql = "INSERT INTO checklist
-    (task_name, task_description, assigned_to, assigned_by, priority, submission_date, status, category, note, notify_user, sent_email)
+    (task_name, task_description, assigned_to, assigned_by, priority, submission_date, status, category, note, notify_user)
     VALUES
-    ('$task_name', '$task_description', $assigned_to, $assigned_by, '$priority', '$submission_date', 'pending', '$category', '$note', $notify_user, 0)";
+    ('$task_name', '$task_description', $assigned_to, $assigned_by, '$priority', '$submission_date', 'pending', '$category', '$note', $notify_user)";
 
 if ($conn->query($sql)) {
-    $task_id = $conn->insert_id;
-    $mailSent = false;
+    // ===== Simulate Fake Email Sending =====
+    $email_msg = $notify_user ? " (Simulated email notification sent to $assignee_name)" : "";
 
-    if ($notify_user == 1) {
-        // ===== Mailgun API via HTTP POST =====
-        $apiKey = getenv('MAILGUN_API_KEY');
-        $domain = getenv('MAILGUN_DOMAIN');
-
-        $emailMessage = "
-        <html>
-        <body>
-        <p>Hi <b>$assignee_name</b>,</p>
-        <p>You have been assigned a new task in the Task Management System.</p>
-        <p><b>Task Title:</b> $task_name<br>
-        <b>Description:</b> $task_description<br>
-        <b>Priority:</b> $priority<br>
-        <b>Due Date:</b> $submission_date<br>
-        <b>Category:</b> $category</p>
-        <p>Please log in to your dashboard to view details.</p>
-        <p>Regards,<br>Task Management System</p>
-        </body>
-        </html>";
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, 'api:' . $apiKey);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_URL, "https://api.mailgun.net/v3/$domain/messages");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, [
-            'from'    => 'Task Manager <noreply@yourdomain.com>',
-            'to'      => $assignee_email,
-            'subject' => "New Task Assigned: $task_name",
-            'html'    => $emailMessage
-        ]);
-
-        $result = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        if ($httpCode === 200) {
-            $mailSent = true;
-        }
-    }
-
-    // ===== Update sent_email column =====
-    $sent_email = $mailSent ? 1 : 0;
-    $updateQuery = "UPDATE checklist SET sent_email = $sent_email WHERE id = $task_id";
-    $conn->query($updateQuery);
-
-    // ===== Prepare JSON response =====
     $response = [
         "success" => true,
-        "message" => "Task assigned successfully!" . ($mailSent ? " Email notification sent to $assignee_name." : "")
+        "message" => "Task assigned successfully!" . $email_msg
     ];
-
 } else {
     $response = [
         "success" => false,
@@ -136,3 +87,5 @@ ob_end_clean();
 echo json_encode($response);
 $conn->close();
 exit;
+?>
+
