@@ -1,15 +1,14 @@
 <?php
-// Try to read credentials from environment variables first (for Render)
-$servername = getenv('DB_HOST') ?: 'localhost';
-$username   = getenv('DB_USER') ?: 'root';
-$password   = getenv('DB_PASS') ?: '';
-$dbname     = getenv('DB_NAME') ?: 'task_manager';
+$servername = getenv('DB_HOST');
+$username   = getenv('DB_USER');
+$password   = getenv('DB_PASS');
+$dbname     = getenv('DB_NAME');
+$port       = getenv('DB_PORT') ?: 3306;
 
-// Connect to database
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 
-// Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 ?>
+
